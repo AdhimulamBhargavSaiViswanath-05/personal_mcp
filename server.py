@@ -26,7 +26,8 @@ async def health_check(_request: Request) -> JSONResponse:
             "service": "personal-mcp",
             "version": V0_LABEL,
             "transport": config.mcp_transport(),
-        }
+        },
+        headers={"Access-Control-Allow-Origin": "*"},
     )
 
 

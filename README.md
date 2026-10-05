@@ -50,9 +50,11 @@ kill %1
 
 ## GitHub Pages
 
-1. Merge v0 to **`main`**.
-2. Repo → **Settings → Pages** → Source: branch **`main`**, folder **`/docs`**.
-3. Open `https://<user>.github.io/personal_mcp/` (see `docs/index.md`).
+1. Repo → **Settings → Pages** → **Build and deployment** → Source: **GitHub Actions**.
+2. Push to **`main`** (workflow `.github/workflows/deploy-pages.yml` uploads `docs/`).
+3. Site: `https://adhimulambhargavsaiviswanath-05.github.io/personal_mcp/`
+
+(Branch `/docs` deploy still works, but **Actions** is recommended for the static `index.html` site.)
 
 ## Render
 
