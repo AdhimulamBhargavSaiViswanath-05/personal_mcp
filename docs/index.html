@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Personal MCP v0 — status, endpoints, and docs" />
-  <title>Personal MCP · v0</title>
+  <meta name="description" content="Adhimulam Bhargav Sai Viswanath — Personal MCP v0 status, Render + Cursor endpoints" />
+  <meta name="author" content="Adhimulam Bhargav Sai Viswanath" />
+  <title>Personal MCP · v0 · Bhargav</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -19,36 +20,57 @@
       <span class="logo-chip">MCP</span>
       <div>
         <h1>Personal MCP</h1>
-        <p class="tagline">Model Context Protocol · learning lab · v0</p>
+        <p class="tagline">Adhimulam Bhargav Sai Viswanath · learning lab · v0</p>
       </div>
     </div>
     <nav class="site-nav">
-      <a href="https://github.com/AdhimulamBhargavSaiViswanath-05/personal_mcp" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/AdhimulamBhargavSaiViswanath-05" target="_blank" rel="noopener">Profile</a>
+      <a href="https://github.com/AdhimulamBhargavSaiViswanath-05/personal_mcp" target="_blank" rel="noopener">Repository</a>
+      <a href="#about">About</a>
       <a href="#endpoints">Endpoints</a>
-      <a href="#terminal">Live probe</a>
     </nav>
   </header>
 
   <main>
     <section class="hero">
       <div class="hero-text">
-        <p class="eyebrow">// static dashboard — MCP runs elsewhere</p>
-        <h2>Your CS-themed control panel for <span class="accent">personal_mcp</span></h2>
+        <p class="eyebrow">// static dashboard — MCP process runs on Render or your Mac</p>
+        <h2>Bhargav’s control panel for <span class="accent">personal_mcp</span></h2>
         <p class="lead">
-          GitHub Pages shows status and links only. The real server runs on
-          <strong>Render</strong> (HTTP) or <strong>Cursor</strong> (stdio on your Mac).
+          Personal project (not work code). This site is hosted on
+          <strong>GitHub Pages</strong>. The MCP server runs on
+          <strong>Render</strong> (HTTP) or in <strong>Cursor</strong> (stdio).
         </p>
         <div class="status-pill" id="health-pill">
           <span class="pulse"></span>
-          <span id="health-label">Checking Render /health…</span>
+          <span id="health-label">Contacting Render health check…</span>
         </div>
       </div>
       <div class="hero-terminal" id="terminal">
         <div class="terminal-bar">
           <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-          <span class="terminal-title">cursor — personal_ping</span>
+          <span class="terminal-title">GET personal-mcp-husu.onrender.com/health</span>
         </div>
-        <pre class="terminal-body"><code id="typed-output"></code><span class="caret" aria-hidden="true"></span></pre>
+        <pre class="terminal-body"><code id="typed-output">{
+  "ok": true,
+  "service": "personal-mcp",
+  "version": "v0",
+  "transport": "streamable-http"
+}</code><span class="caret" aria-hidden="true"></span></pre>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h3>About</h3>
+      <div class="about-card">
+        <p><strong>Name:</strong> Adhimulam Bhargav Sai Viswanath</p>
+        <p><strong>GitHub:</strong>
+          <a href="https://github.com/AdhimulamBhargavSaiViswanath-05" target="_blank" rel="noopener">@AdhimulamBhargavSaiViswanath-05</a>
+        </p>
+        <p><strong>Repository:</strong>
+          <a href="https://github.com/AdhimulamBhargavSaiViswanath-05/personal_mcp" target="_blank" rel="noopener">AdhimulamBhargavSaiViswanath-05/personal_mcp</a>
+        </p>
+        <p><strong>Goal:</strong> Learn Model Context Protocol (stdio → HTTP), deploy v0, add tools later on feature branches.</p>
       </div>
     </section>
 
@@ -58,19 +80,19 @@
         <article class="node" data-delay="0">
           <div class="node-icon">⌘</div>
           <h4>Cursor</h4>
-          <p>stdio · local dev</p>
+          <p>stdio · Bhargav’s Mac</p>
         </article>
         <div class="wire" aria-hidden="true"></div>
         <article class="node" data-delay="1">
           <div class="node-icon">◇</div>
           <h4>MCP server</h4>
-          <p>FastMCP · personal</p>
+          <p>FastMCP · name: personal</p>
         </article>
         <div class="wire" aria-hidden="true"></div>
         <article class="node" data-delay="2">
           <div class="node-icon">☁</div>
           <h4>Render</h4>
-          <p>streamable-http</p>
+          <p>personal-mcp-husu.onrender.com</p>
         </article>
       </div>
     </section>
@@ -79,45 +101,52 @@
       <h3>Live endpoints</h3>
       <div class="card-grid">
         <a class="card" href="https://adhimulambhargavsaiviswanath-05.github.io/personal_mcp/" data-tilt>
-          <span class="card-label">Pages</span>
-          <span class="card-url">…/personal_mcp/</span>
-          <p>Docs + this UI (static)</p>
+          <span class="card-label">GitHub Pages</span>
+          <span class="card-url">https://adhimulambhargavsaiviswanath-05.github.io/personal_mcp/</span>
+          <p>This dashboard (static HTML)</p>
         </a>
         <a class="card" href="https://personal-mcp-husu.onrender.com/health" target="_blank" rel="noopener" data-tilt>
-          <span class="card-label">Render</span>
-          <span class="card-url">personal-mcp-husu.onrender.com</span>
-          <p>GET <code>/health</code> · MCP at <code>/mcp</code></p>
+          <span class="card-label">Render · health</span>
+          <span class="card-url">https://personal-mcp-husu.onrender.com/health</span>
+          <p>Public JSON probe (no API key)</p>
+        </a>
+        <a class="card" href="https://personal-mcp-husu.onrender.com/mcp" target="_blank" rel="noopener" data-tilt>
+          <span class="card-label">Render · MCP</span>
+          <span class="card-url">https://personal-mcp-husu.onrender.com/mcp</span>
+          <p>Requires <code>X-API-Key</code> (your Render secret)</p>
         </a>
         <a class="card" href="https://github.com/AdhimulamBhargavSaiViswanath-05/personal_mcp" target="_blank" rel="noopener" data-tilt>
-          <span class="card-label">Source</span>
-          <span class="card-url">personal_mcp</span>
-          <p>Python · v0 = <code>personal_ping</code></p>
+          <span class="card-label">Source code</span>
+          <span class="card-url">https://github.com/AdhimulamBhargavSaiViswanath-05/personal_mcp</span>
+          <p>Python 3.12 on Render · tool: <code>personal_ping</code></p>
         </a>
       </div>
       <p class="hint">
-        Opening <code>/</code> on Render without <code>X-API-Key</code> returns <code>401</code> — expected.
-        Use <a href="https://personal-mcp-husu.onrender.com/health">/health</a> in the browser.
+        Browser tip: open
+        <a href="https://personal-mcp-husu.onrender.com/health">https://personal-mcp-husu.onrender.com/health</a>.
+        Root <code>/</code> without API key returns <code>401</code> by design.
       </p>
     </section>
 
-    <section id="terminal" class="tools">
+    <section id="tools" class="tools">
       <h3>v0 tools</h3>
       <table>
         <thead>
           <tr><th>Tool</th><th>Role</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>personal_ping</code></td><td>ok · version · transport · Python</td></tr>
+          <tr><td><code>personal_ping</code></td><td>ok · version · transport · Python (stdio or HTTP)</td></tr>
         </tbody>
       </table>
-      <p class="hint">More tools ship in later <code>feature/*</code> branches.</p>
+      <p class="hint">Notes, GitHub, and job-tracker tools come in later <code>feature/*</code> branches.</p>
     </section>
   </main>
 
   <footer class="site-footer">
     <p>
-      <a href="https://github.com/AdhimulamBhargavSaiViswanath-05">AdhimulamBhargavSaiViswanath-05</a>
-      · Deployed via GitHub Actions → Pages
+      Maintained by
+      <a href="https://github.com/AdhimulamBhargavSaiViswanath-05">Adhimulam Bhargav Sai Viswanath</a>
+      · Site deploy: GitHub Actions → Pages · MCP: Render
     </p>
   </footer>
 
