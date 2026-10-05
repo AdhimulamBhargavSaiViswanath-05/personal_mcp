@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "personal": {
+      "command": "REPLACE_WITH_ABS_PATH_TO_VENV_PYTHON",
+      "args": ["REPLACE_WITH_ABS_PATH_TO_server.py"]
+    }
+  }
+}
