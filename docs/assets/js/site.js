@@ -2,8 +2,12 @@
   "use strict";
 
   const RENDER_HEALTH = "https://personal-mcp-husu.onrender.com/health";
-  const PING_SAMPLE =
-    '{\n  "ok": true,\n  "version": "v0",\n  "transport": "streamable-http",\n  "python_version": "3.12.x"\n}';
+  const HEALTH_FALLBACK = {
+    ok: true,
+    service: "personal-mcp",
+    version: "v0",
+    transport: "streamable-http",
+  };
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function initGrid() {
@@ -13,7 +17,6 @@
     const ctx = canvas.getContext("2d");
     let w = 0;
     let h = 0;
-    let t = 0;
     const nodes = [];
 
     function resize() {
@@ -62,9 +65,7 @@
 
         for (let j = i + 1; j < nodes.length; j++) {
           const b = nodes[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const dist = Math.hypot(dx, dy);
+          const dist = Math.hypot(a.x - b.x, a.y - b.y);
           if (dist < 120) {
             ctx.strokeStyle = `rgba(56, 189, 248, ${0.15 * (1 - dist / 120)})`;
             ctx.beginPath();
@@ -74,8 +75,6 @@
           }
         }
       }
-
-      t += 0.008;
       requestAnimationFrame(draw);
     }
 
@@ -84,10 +83,12 @@
     draw();
   }
 
-  function typeTerminal(text) {
+  function showTerminal(data, animate) {
     const el = document.getElementById("typed-output");
-    if (!el || reducedMotion) {
-      if (el) el.textContent = text;
+    if (!el) return;
+    const text = JSON.stringify(data, null, 2);
+    if (!animate || reducedMotion) {
+      el.textContent = text;
       return;
     }
     let i = 0;
@@ -95,7 +96,7 @@
       if (i <= text.length) {
         el.textContent = text.slice(0, i);
         i++;
-        setTimeout(tick, 12 + Math.random() * 18);
+        setTimeout(tick, 10 + Math.random() * 12);
       }
     }
     tick();
@@ -107,20 +108,18 @@
     if (!pill || !label) return;
 
     try {
-      const res = await fetch(RENDER_HEALTH, { mode: "cors" });
+      const res = await fetch(RENDER_HEALTH, { mode: "cors", cache: "no-store" });
       if (!res.ok) throw new Error("HTTP " + res.status);
       const data = await res.json();
       pill.classList.add("ok");
-      label.textContent = "Render live · " + (data.version || "v0");
-      if (data.ok && !reducedMotion) {
-        typeTerminal(JSON.stringify(data, null, 2));
-      } else if (data.ok) {
-        document.getElementById("typed-output").textContent = JSON.stringify(data, null, 2);
-      }
+      label.textContent =
+        "Render live · " + (data.service || "personal-mcp") + " · " + (data.version || "v0");
+      showTerminal(data, true);
     } catch {
       pill.classList.add("err");
-      label.textContent = "Render sleep / cold start — open /health";
-      typeTerminal(PING_SAMPLE);
+      label.textContent =
+        "Could not reach Render from browser — open /health directly (cold start or redeploy CORS)";
+      showTerminal(HEALTH_FALLBACK, false);
     }
   }
 
