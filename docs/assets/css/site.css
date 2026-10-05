@@ -254,6 +254,32 @@ main,
   50% { opacity: 0; }
 }
 
+.about {
+  padding: 1.5rem 0 0.5rem;
+}
+
+.about-card {
+  padding: 1.25rem 1.35rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  backdrop-filter: blur(6px);
+  font-size: 0.95rem;
+}
+
+.about-card p {
+  margin: 0.5rem 0;
+}
+
+.about-card a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.about-card a:hover {
+  text-decoration: underline;
+}
+
 .pipeline {
   padding: 2rem 0;
 }
