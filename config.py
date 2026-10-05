@@ -28,12 +28,6 @@ def data_dir() -> Path:
     return path
 
 
-def github_token() -> str | None:
-    """Return the GitHub PAT if set, otherwise None."""
-    token = _str("GITHUB_TOKEN", "")
-    return token or None
-
-
 def mcp_transport() -> str:
     """Return MCP transport mode: stdio or streamable-http."""
     value = _str("MCP_TRANSPORT", "stdio").lower()
