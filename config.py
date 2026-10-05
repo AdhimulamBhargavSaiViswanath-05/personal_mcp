@@ -42,8 +42,9 @@ def mcp_host() -> str:
 
 
 def mcp_port() -> int:
-    """Return bind port for HTTP transport."""
-    return int(_str("MCP_PORT", "8008"))
+    """Return bind port for HTTP transport (Render sets PORT)."""
+    port = os.getenv("PORT", "").strip() or _str("MCP_PORT", "8008")
+    return int(port)
 
 
 def mcp_api_key() -> str | None:
